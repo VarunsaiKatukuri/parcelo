@@ -55,9 +55,9 @@
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
-  --primary: #1E3A8A;
+  --primary: #2563EB;
   --primary-foreground: #FFFFFF;
-  --secondary: #D6AE7B;
+  --secondary: #D97706;
   --secondary-foreground: #FFFFFF;
   --muted: #F1F5F9;
   --muted-foreground: #64748B;
@@ -84,15 +84,15 @@
 }
 
 .btn-accept {
-  @apply bg-[#1E3A8A] hover:bg-blue-900 text-white shadow-lg shadow-blue-900/20;
+  @apply bg-[#2563EB] hover:bg-blue-700 text-white shadow-lg shadow-blue-600/20;
 }
 
 .btn-ready {
-  @apply bg-[#D6AE7B] hover:bg-[#C59D6A] text-white shadow-lg shadow-orange-900/10;
+  @apply bg-[#D97706] hover:bg-amber-700 text-white shadow-lg shadow-amber-600/20;
 }
 
 .btn-dispatch {
-  @apply bg-[#1E3A8A] hover:bg-blue-900 text-white shadow-lg shadow-blue-900/20;
+  @apply bg-[#2563EB] hover:bg-blue-700 text-white shadow-lg shadow-blue-600/20;
 }
 
 .btn-view {

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Order } from '@/types'
@@ -9,17 +10,11 @@ import {
   Bell, ChevronDown, User, CheckCircle2,
   MapPin, Truck, Navigation, Wallet, ClipboardList, 
   Clock, Tag, CreditCard, MessageCircle, MoreVertical,
-  Store, Smartphone, Users, TrendingUp
+  Store, Smartphone, Users, TrendingUp, Bike, X
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -96,9 +91,9 @@ export default function DashboardPage() {
 
   const columns = [
     { id: 'PENDING_PAYMENT', title: 'New Orders', icon: ShoppingBag, color: 'text-blue-700' },
-    { id: 'PENDING_DELIVERY', title: 'Preparing', icon: Store, color: 'text-orange-600' },
+    { id: 'PENDING_DELIVERY', title: 'Preparing', icon: ShoppingBag, color: 'text-orange-600' },
     { id: 'READY', title: 'Ready for Dispatch', icon: CheckCircle2, color: 'text-blue-600' },
-    { id: 'ASSIGNED', title: 'Dispatched', icon: Truck, color: 'text-emerald-600' },
+    { id: 'ASSIGNED', title: 'Dispatched', icon: Bike, color: 'text-emerald-600' },
   ]
 
   const handleStatusUpdate = async (orderId: string, newStatus: string) => {
@@ -110,14 +105,8 @@ export default function DashboardPage() {
     <div className="flex min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans overflow-hidden">
       {/* SIDEBAR */}
       <aside className="w-72 bg-white border-r flex flex-col sticky top-0 h-screen z-50">
-        <div className="p-10 flex items-center gap-3">
-          <div className="relative flex items-center justify-center">
-             <div className="bg-[#1E3A8A] w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-900/10">
-               <ShoppingBag className="text-white" size={24} />
-             </div>
-             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-[#D6AE7B] rounded-full border-2 border-white" />
-          </div>
-          <span className="text-3xl font-black text-[#1E3A8A] tracking-tighter">Parcelo</span>
+        <div className="p-8 flex items-center gap-3">
+             <img src="/logo.png" alt="Parcelo Logo" className="w-48 h-auto object-contain" />
         </div>
 
         <nav className="flex-1 px-6 space-y-2">
@@ -136,9 +125,9 @@ export default function DashboardPage() {
           <div className="bg-[#EFF6FF] p-6 rounded-[2rem] relative overflow-hidden group border border-blue-100/50 cursor-pointer">
              <div className="relative z-10 flex flex-col items-center text-center">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm mb-3">
-                   <MessageCircle size={20} className="text-[#1E3A8A]" />
+                   <MessageCircle size={20} className="text-[#2563EB]" />
                 </div>
-                <p className="text-sm font-black text-[#1E3A8A]">Need Help?</p>
+                <p className="text-sm font-black text-[#2563EB]">Need Help?</p>
                 <p className="text-xs text-blue-500 font-bold mt-1">Chat with us</p>
              </div>
           </div>
@@ -152,14 +141,8 @@ export default function DashboardPage() {
              </div>
              {/* Mascot Area */}
              <div className="flex justify-center py-4">
-                <div className="w-24 h-24 relative flex items-center justify-center animate-bounce duration-[2000ms]">
-                   <div className="bg-[#D6AE7B]/10 w-20 h-20 rounded-[2.5rem] flex items-center justify-center">
-                      <ShoppingBag className="text-[#D6AE7B]" size={40} />
-                      <div className="absolute top-2 right-2 bg-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white font-black shadow-lg">P</div>
-                      <div className="absolute -left-2 top-1/2 bg-white w-6 h-6 rounded-full shadow-sm flex items-center justify-center border text-[#1E3A8A]">
-                         <MessageCircle size={12} />
-                      </div>
-                   </div>
+                <div className="w-36 h-36 relative flex items-center justify-center animate-bounce duration-[2000ms]">
+                   <img src="/mascot.png" alt="Parcelo Mascot" className="w-32 h-32 object-contain drop-shadow-xl" />
                 </div>
              </div>
           </div>
@@ -180,7 +163,7 @@ export default function DashboardPage() {
               <DropdownMenuTrigger>
                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-2xl border border-slate-100 parcelo-shadow cursor-pointer hover:bg-slate-50 transition-all">
                    <div className="bg-slate-50 p-2 rounded-xl">
-                     <Store size={20} className="text-[#1E3A8A]" />
+                     <Store size={20} className="text-[#2563EB]" />
                    </div>
                    <span className="text-base font-black text-slate-800 tracking-tight">HiTech Cafe</span>
                    <ChevronDown size={16} className="text-slate-400" />
@@ -194,13 +177,13 @@ export default function DashboardPage() {
             
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center relative border border-slate-100 cursor-pointer group">
-                <Bell size={24} className="text-slate-400 group-hover:text-[#1E3A8A] transition-colors" />
+                <Bell size={24} className="text-slate-400 group-hover:text-[#2563EB] transition-colors" />
                 <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-700 rounded-full border-4 border-[#F8FAFC] flex items-center justify-center">
                   <span className="text-[10px] text-white font-black">3</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-[#1E3A8A] pl-2 pr-5 py-2 rounded-2xl text-white shadow-xl shadow-blue-900/20 cursor-pointer">
+              <div className="flex items-center gap-3 bg-[#2563EB] pl-2 pr-5 py-2 rounded-2xl text-white shadow-xl shadow-blue-900/20 cursor-pointer">
                  <div className="bg-blue-400/20 w-10 h-10 rounded-xl flex items-center justify-center text-sm font-black border border-white/20">V</div>
                  <div className="flex items-center gap-2">
                    <span className="text-sm font-black tracking-tight">Varun</span>
@@ -211,11 +194,12 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-10 space-y-10">
-          {/* STATS */}
+        <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 overflow-x-auto overflow-y-auto p-10 space-y-10">
+            {/* STATS */}
           <div className="grid grid-cols-4 gap-8">
             {stats.map((stat, i) => (
-              <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100/50 shadow-sm group hover:border-[#1E3A8A]/20 transition-all">
+              <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100/50 shadow-sm group hover:border-[#2563EB]/20 transition-all">
                 <div className="flex justify-between items-start mb-6">
                   <div className={`${stat.bg} ${stat.color} p-4 rounded-3xl transition-transform group-hover:scale-110`}>
                     <stat.icon size={28} />
@@ -259,7 +243,7 @@ export default function DashboardPage() {
                     <div 
                       key={order.id} 
                       onClick={() => setSelectedOrder(order)}
-                      className="bg-white p-6 rounded-[2.5rem] border border-white hover:border-[#D6AE7B] cursor-pointer transition-all hover:scale-[1.02] parcelo-card-shadow group"
+                      className="bg-white p-6 rounded-[2.5rem] border border-white hover:border-[#D97706] cursor-pointer transition-all hover:scale-[1.02] parcelo-card-shadow group"
                     >
                       <div className="flex justify-between items-start mb-4">
                          <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">#{order.id.slice(0, 4)}</span>
@@ -268,7 +252,7 @@ export default function DashboardPage() {
                          </span>
                       </div>
                       
-                      <h5 className="font-black text-xl mb-1 text-[#0F172A] group-hover:text-[#1E3A8A] transition-colors">{order.customer_name}</h5>
+                      <h5 className="font-black text-xl mb-1 text-[#0F172A] group-hover:text-[#2563EB] transition-colors">{order.customer_name}</h5>
                       <p className="text-[11px] font-bold text-slate-400 mb-5">{order.customer_phone}</p>
                       
                       <div className="space-y-2 mb-6">
@@ -315,22 +299,20 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
-      </main>
 
-      {/* DETAIL SIDE PANEL */}
-      <Sheet open={!!selectedOrder} onOpenChange={() => setSelectedOrder(null)}>
-        <SheetContent className="sm:max-w-[500px] p-0 border-none rounded-l-[4rem] overflow-hidden shadow-2xl">
-          {selectedOrder && (
+        {/* DETAIL SIDE PANEL */}
+        {selectedOrder && (
+          <aside className="w-[450px] shrink-0 border-l border-slate-100 bg-white h-full shadow-2xl z-40 animate-in slide-in-from-right duration-300">
             <div className="h-full flex flex-col bg-white">
               <div className="p-10 border-b border-slate-50 relative">
                 <button onClick={() => setSelectedOrder(null)} className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors">
-                   <RefreshCcw size={20} className="rotate-45" />
+                   <X size={24} />
                 </button>
                 <div className="space-y-4">
                    <Badge className="bg-blue-50 text-blue-700 border-blue-100 rounded-full font-black text-[10px] px-3 py-1 uppercase">
                      {selectedOrder.status.replace('_', ' ')}
                    </Badge>
-                   <SheetTitle className="text-4xl font-black tracking-tight text-[#1E3A8A]">Order #{selectedOrder.id.slice(0, 4)}</SheetTitle>
+                   <h2 className="text-4xl font-black tracking-tight text-[#2563EB]">Order #{selectedOrder.id.slice(0, 4)}</h2>
                 </div>
               </div>
 
@@ -338,7 +320,7 @@ export default function DashboardPage() {
                 {/* Customer */}
                 <section>
                    <div className="flex items-center gap-5 mb-6">
-                      <div className="w-16 h-16 bg-[#D6AE7B]/10 rounded-3xl flex items-center justify-center text-[#D6AE7B]">
+                      <div className="w-16 h-16 bg-[#D97706]/10 rounded-3xl flex items-center justify-center text-[#D97706]">
                         <User size={32} />
                       </div>
                       <div className="flex-1">
@@ -355,7 +337,7 @@ export default function DashboardPage() {
                       </button>
                    </div>
                    <div className="flex items-start gap-4 bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
-                      <MapPin size={20} className="text-[#D6AE7B] shrink-0" />
+                      <MapPin size={20} className="text-[#D97706] shrink-0" />
                       <p className="text-sm font-bold text-slate-500 leading-relaxed">Hitech City, Hyderabad, Telangana</p>
                    </div>
                 </section>
@@ -372,7 +354,7 @@ export default function DashboardPage() {
                       ))}
                       <div className="pt-6 border-t flex justify-between items-center">
                          <span className="text-xl font-black text-slate-900">Total</span>
-                         <span className="text-3xl font-black text-[#1E3A8A]">₹{selectedOrder.grand_total}</span>
+                         <span className="text-3xl font-black text-[#2563EB]">₹{selectedOrder.grand_total}</span>
                       </div>
                    </div>
                 </section>
@@ -411,16 +393,16 @@ export default function DashboardPage() {
                           name="Rapido" 
                           eta="5 min" 
                           price="58" 
-                          color="#D6AE7B" 
-                          icon={Navigation}
+                          color="#D97706" 
+                          iconImg="/rapido.png"
                           onDispatch={() => handleDispatch(selectedOrder.id, 'Rapido')}
                         />
                         <DeliveryOptionCard 
                           name="Uber Direct" 
                           eta="7 min" 
                           price="65" 
-                          color="#1E3A8A" 
-                          icon={Truck}
+                          color="#2563EB" 
+                          iconImg="/uber.png"
                           onDispatch={() => handleDispatch(selectedOrder.id, 'Uber')}
                         />
                       </div>
@@ -438,19 +420,20 @@ export default function DashboardPage() {
                 </section>
               </div>
             </div>
-          )}
-        </SheetContent>
-      </Sheet>
+          </aside>
+        )}
+        </div>
+      </main>
     </div>
   )
 }
 
-function SidebarItem({ icon: Icon, label, active, count }: any) {
+function SidebarItem({ icon: Icon, label, active, count, href = '#' }: any) {
   return (
-    <div className={`flex items-center justify-between px-5 py-4 rounded-[1.5rem] cursor-pointer transition-all group ${
+    <Link href={href} className={`flex items-center justify-between px-5 py-4 rounded-[1.5rem] cursor-pointer transition-all group ${
       active 
-        ? 'bg-[#1E3A8A] text-white shadow-xl shadow-blue-900/20 font-black' 
-        : 'text-slate-400 hover:bg-slate-50 hover:text-[#1E3A8A]'
+        ? 'bg-[#2563EB] text-white shadow-xl shadow-blue-900/20 font-black' 
+        : 'text-slate-400 hover:bg-slate-50 hover:text-[#2563EB]'
     }`}>
       <div className="flex items-center gap-4">
         <Icon size={22} className={active ? 'text-white' : 'group-hover:scale-110 transition-transform'} />
@@ -458,22 +441,22 @@ function SidebarItem({ icon: Icon, label, active, count }: any) {
       </div>
       {count !== undefined && count > 0 && (
         <span className={`text-[10px] px-2.5 py-1 rounded-full font-black ${
-          active ? 'bg-blue-400 text-white' : 'bg-[#1E3A8A] text-white shadow-lg shadow-blue-900/20'
+          active ? 'bg-blue-400 text-white' : 'bg-[#2563EB] text-white shadow-lg shadow-blue-900/20'
         }`}>
           {count}
         </span>
       )}
-    </div>
+    </Link>
   )
 }
 
-function DeliveryOptionCard({ name, eta, price, color, icon: Icon, onDispatch }: any) {
+function DeliveryOptionCard({ name, eta, price, color, iconImg, onDispatch }: any) {
   return (
-    <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm group hover:border-[#D6AE7B] transition-all">
+    <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm group hover:border-[#D97706] transition-all">
        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-             <div className="bg-slate-50 p-3 rounded-2xl group-hover:scale-110 transition-all">
-               <Icon size={24} className="text-slate-600" />
+             <div className="bg-slate-50 p-3 rounded-2xl group-hover:scale-110 transition-all flex items-center justify-center w-14 h-14">
+               <img src={iconImg} alt={name} className="w-10 h-10 object-contain mix-blend-multiply" />
              </div>
              <div>
                <p className="font-black text-lg text-[#0F172A]">{name}</p>
@@ -496,7 +479,7 @@ function DeliveryOptionCard({ name, eta, price, color, icon: Icon, onDispatch }:
 function TimelinePoint({ label, time, active }: any) {
   return (
     <div className="flex items-center gap-5 relative z-10">
-       <div className={`w-4 h-4 rounded-full border-4 border-white ${active ? 'bg-[#1E3A8A] shadow-[0_0_15px_rgba(30,58,138,0.3)]' : 'bg-slate-200'}`} />
+       <div className={`w-4 h-4 rounded-full border-4 border-white ${active ? 'bg-[#2563EB] shadow-[0_0_15px_rgba(30,58,138,0.3)]' : 'bg-slate-200'}`} />
        <div className="flex justify-between flex-1 items-center">
           <p className={`text-sm font-black ${active ? 'text-[#0F172A]' : 'text-slate-300'}`}>{label}</p>
           <p className="text-[10px] font-black text-slate-400">{time}</p>
