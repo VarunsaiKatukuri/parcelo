@@ -215,7 +215,7 @@ Small cafes and local shops in India lose orders every day because they don't ha
 
 ## Contact
 
-Built with ❤️ for local businesses in Hyderabad.
+Built with ❤️ for local businesses.
 
 Have feedback, want to collaborate, or thinking of onboarding your shop?
 
